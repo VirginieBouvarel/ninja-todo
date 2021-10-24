@@ -1,4 +1,5 @@
 <template>
+ <v-theme-provider light>
   <v-app >
     <Navbar />
 
@@ -6,6 +7,7 @@
       <router-view/>
     </v-main>
   </v-app>
+ </v-theme-provider>
 </template>
 
 <script>
