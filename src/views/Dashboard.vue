@@ -1,18 +1,30 @@
 <template>
   <div class="dashboard">
-    <h1 class="subheading grey--text">Dashboard</h1>
+    <h1 class="subheading grey--text mb-12">Dashboard</h1>
 
     <v-container class="my-5">
       
       <v-row class="ml-3 mb-3">
-        <v-btn small text dark color="grey" @click="sortBy(criteria.title)">
-          <v-icon left small>mdi-folder</v-icon>
-          <span class="text-caption text-lowercase">by project title</span>
-        </v-btn>
-        <v-btn small text dark color="grey" @click="sortBy(criteria.person)">
-          <v-icon left small>mdi-account</v-icon>
-          <span class="text-caption text-lowercase">by person</span>
-        </v-btn>
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+
+            <v-btn small text dark color="grey" @click="sortBy(criteria.title)" v-bind="attrs" v-on="on">
+            <v-icon left small>mdi-folder</v-icon>
+            <span class="text-caption text-lowercase">by project title</span>
+            </v-btn>
+
+          </template>
+          <span>Sort projects by project title</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn small text dark color="grey" @click="sortBy(criteria.person)" v-bind="attrs" v-on="on">
+              <v-icon left small>mdi-account</v-icon>
+              <span class="text-caption text-lowercase">by person</span>
+            </v-btn>
+          </template>
+          <span>Sort projects by person</span>
+        </v-tooltip>
       </v-row>
 
       <v-card flat class="pa-3" v-for="project in projects" :key="project.title">
