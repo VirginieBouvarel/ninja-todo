@@ -14,6 +14,15 @@
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="primary">
+      <v-row>
+        <v-col class="mt-5 text-center">
+          <v-avatar size="100">
+            <img src="/avatar-1.png" alt="" >
+          </v-avatar>
+          <p class="white--text subheading mt-1">The net Ninja</p>
+        </v-col>
+      </v-row>
+
       <v-list>
         <v-list-item v-for="link in links" :key="link.text" :to="link.route">
           <v-list-item-action>
