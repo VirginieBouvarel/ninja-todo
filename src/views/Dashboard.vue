@@ -23,9 +23,11 @@
            <div>{{ project.status}}</div>
           </v-col>
         </v-row>
+
         <v-row>
           <v-divider></v-divider>
         </v-row>
+        
       </v-card>
       
     </v-container>
