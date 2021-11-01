@@ -1,5 +1,5 @@
 <template>
-<nav>
+<div>
     <v-app-bar flat app>
       <v-app-bar-nav-icon class="grey--text" @click="drawer= !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title class="text-uppercase grey--text">
@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
       <v-btn text color="grey">
         <span>Sign Out</span>
-        <v-icon right>exit-to-app</v-icon>
+        <v-icon class="grey--text" right>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -25,7 +25,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </nav>
+  </div>
 </template>
 
 <script>

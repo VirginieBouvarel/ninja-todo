@@ -5,7 +5,9 @@
       <Navbar />
 
       <v-main class="grey lighten-4 px-4 pb-4">
-        <router-view/>
+        <v-content>
+          <router-view/>
+        </v-content>
       </v-main>
 
   </v-app>
