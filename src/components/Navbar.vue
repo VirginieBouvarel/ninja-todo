@@ -43,12 +43,15 @@
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="primary">
-      <v-row>
+      <v-row class="flex-column align-center">
         <v-col class="mt-5 text-center">
           <v-avatar size="100">
             <img src="/avatar-1.png" alt="" >
           </v-avatar>
           <p class="white--text subheading mt-1">The net Ninja</p>
+        </v-col>
+        <v-col class="mb-3">
+          <Popup />
         </v-col>
       </v-row>
 
@@ -67,7 +70,11 @@
 </template>
 
 <script>
+import Popup from './Popup.vue';
   export default {
+    components: {
+      Popup,
+    },
     data() {
       return {
         drawer: true,
