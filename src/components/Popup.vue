@@ -80,27 +80,27 @@
       submit() {
         if(this.$refs.form.validate()) {
           this.loading = true;
-
-          const project = {
-            title: this.title,
-            content: this.content,
-            due: moment(this.due).format("Do MMMM YYYY"),
-            person: 'The Net Ninja',
-            status: 'ongoing'
-          };
-          
-          addDoc(collection(db, 'projects'), project)
-            .then( () => {
-              console.log(`added in db`);
-              this.loading = false;
-              this.dialog = false;
-              this.$emit('projectAdded');
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-            });
-          
+          this.addDocs();
         }
+      },
+      async addDocs() {
+        const project = {
+          title: this.title,
+          content: this.content,
+          due: moment(this.due).format("Do MMMM YYYY"),
+          person: 'The Net Ninja',
+          status: 'ongoing'
+        };
+        const docRef = await addDoc(collection(db, 'projects'), project)
+          .then( () => {
+            this.loading = false;
+            this.dialog = false;
+            this.$emit('projectAdded');
+            console.log("Document written with ID: ", docRef.id);
+          })
+          .catch((error) => {
+              console.error("Error adding document: ", error);
+          });
       }
     },
     computed: {
