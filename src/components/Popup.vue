@@ -94,6 +94,7 @@
               console.log(`added in db`);
               this.loading = false;
               this.dialog = false;
+              this.$emit('projectAdded');
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);

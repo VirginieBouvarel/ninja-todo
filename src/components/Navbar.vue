@@ -1,5 +1,10 @@
 <template>
 <div>
+    <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+      <span class="mr-4">Awesome! You added a new project.</span>
+      <v-btn text color="white" @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
+
     <v-app-bar flat app>
       <v-app-bar-nav-icon class="grey--text" @click="drawer= !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title class="text-uppercase grey--text">
@@ -51,7 +56,7 @@
           <p class="white--text subheading mt-1">The net Ninja</p>
         </v-col>
         <v-col class="mb-3">
-          <Popup />
+          <Popup @projectAdded="snackbar = true"/>
         </v-col>
       </v-row>
 
@@ -82,12 +87,12 @@ import Popup from './Popup.vue';
           { icon: 'mdi-view-dashboard', text: 'Dashboard', route: '/' },
           { icon: 'mdi-folder', text: 'My Projects', route: '/projects' },
           { icon: 'mdi-account', text: 'Team', route: '/team' },
-        ]
+        ],
+        snackbar: false,
       }
     },
   }
 </script>
 
 <style lang="scss" scoped>
-
 </style>
