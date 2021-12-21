@@ -60,6 +60,8 @@
   // import format from 'date-fns/format';
   // import parseISO from 'date-fns/parseISO';
   import moment from 'moment';
+  import db from '@/fb';
+  import { collection, addDoc } from "firebase/firestore";
 
   export default {
     data() {
@@ -76,6 +78,23 @@
       submit() {
         if(this.$refs.form.validate()) {
           console.log(this.title, this.content);
+
+          const project = {
+            title: this.title,
+            content: this.content,
+            due: moment(this.due).format("Do MMMM YYYY"),
+            person: 'The Net Ninja',
+            status: 'ongoing'
+          };
+          
+          addDoc(collection(db, 'projects'), project)
+            .then( () => {
+              console.log(`added in db`);
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+          
         }
       }
     },
@@ -92,5 +111,4 @@
 </script>
 
 <style lang="scss" scoped>
-
 </style>
