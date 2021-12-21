@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog max-width="500">
+    <v-dialog max-width="500" v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="success"
@@ -47,7 +47,7 @@
               ></v-date-picker>
             </v-menu>
 
-            <v-btn depressed tile class="success mx-0 mt-3" @click="submit">ADD PROJECT</v-btn>
+            <v-btn depressed tile class="success mx-0 mt-3" @click="submit" :loading="loading">ADD PROJECT</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -71,13 +71,15 @@
         due: null,
         inputRules: [
           v => v.length >= 3 || 'Minimum length is 3 characters'
-        ]
+        ],
+        loading:false,
+        dialog:false,
       }
     },
     methods: {
       submit() {
         if(this.$refs.form.validate()) {
-          console.log(this.title, this.content);
+          this.loading = true;
 
           const project = {
             title: this.title,
@@ -90,6 +92,8 @@
           addDoc(collection(db, 'projects'), project)
             .then( () => {
               console.log(`added in db`);
+              this.loading = false;
+              this.dialog = false;
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);
