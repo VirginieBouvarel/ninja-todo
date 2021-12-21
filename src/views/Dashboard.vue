@@ -79,7 +79,8 @@
       // ]
     }),
     created() {
-      this.querySnapshot();
+      this.querySnapshot(); 
+      // Nécessite de recharger la page pour être mis à jour, car ne se lance qu'a la création du composant et pas à chaque changement 
 
     },
     methods: {
